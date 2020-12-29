@@ -1,345 +1,408 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <title>ระบบเช็ดชื่อรายวิชา</title>
-  <style>
-    table,
-    th,
-    td {
-      margin: 10px 0;
-      border: solid 1px #333;
-      padding: 2px 4px;
-      font: 15px Verdana;
-    }
-
-    th {
-      font-weight: bold;
-    }
-
-    #loader {
-      border: 16px solid #0B96F7;
-      border-radius: 50%;
-      border-top: 16px solid #FFFF00;
-      border-bottom: 16px solid #FFFF00;
-      width: 40px;
-      height: 40px;
-      -webkit-animation: spin 2s linear infinite;
-      animation: spin 2s linear infinite;
-      visibility: hidden;
-    }
-
-    @-webkit-keyframes spin {
-      0% {
-        -webkit-transform: rotate(0deg);
-      }
-
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script>
-
-    var script_url = "https://script.google.com/macros/s/AKfycbwshQKtKwdKxXeF0NybEcqqLyuXaHHa7qTddHFcNTRm2188E2lEoNR9SA/exec";
-
-    //เพิ่มข้อมูล
-    function insert_value() {
-
-      $("#re").css("visibility", "hidden");
-      document.getElementById("loader").style.visibility = "visible";
-      $('#mySpinner').addClass('spinner');
-
-      var datevalue = $("#datevalue").val();
-      var id1 = $("#id").val();
-      var name = $("#name").val();
-      var subject = $("#subject").val();
-      var status = $("#status").val();
-      var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
-
-      var request = jQuery.ajax({
-        crossDomain: true,
-        url: url,
-        method: "GET",
-        dataType: "jsonp"
-      });
-    }
-    //อัปเดทข้อมูล
-    function update_value() {
-      $("#re").css("visibility", "hidden");
-      document.getElementById("loader").style.visibility = "visible";
-
-      var datevalue = $("#datevalue").val();
-      var id1 = $("#id").val();
-      var name = $("#name").val();
-      var subject = $("#subject").val();
-      var status = $("#status").val();
-      var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
-      var request = jQuery.ajax({
-        crossDomain: true,
-        url: url,
-        method: "GET",
-        dataType: "jsonp"
-      });
-    }
-
-    //ลบข้อมูล
-    function delete_value() {
-      $("#re").css("visibility", "hidden");
-      document.getElementById("loader").style.visibility = "visible";
-
-      $('#mySpinner').addClass('spinner');
-
-      var datevalue = $("#datevalue").val();
-      var id1 = $("#id").val();
-      var name = $("#name").val();
-      var subject = $("#subject").val();
-      var status = $("#status").val();
-      var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
-      var request = jQuery.ajax({
-        crossDomain: true,
-        url: url,
-        method: "GET",
-        dataType: "jsonp"
-      });
-    }
-
-    // print the returned data
-    function ctrlq(e) {
-      $("#re").html(e.result);
-      $("#re").css("visibility", "visible");
-      read_value();
-    }
-
-    function read_value() {
-
-      $("#re").css("visibility", "hidden");
-      document.getElementById("loader").style.visibility = "visible";
-      var url = script_url + "?action=read";
-
-      $.getJSON(url, function (json) {
-        // สร้างตารางแสดงข้อมูล
-        var table = document.createElement("table");
-        var header = table.createTHead();
-        var row = header.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        row.style.background = "rgb(243,219,113)";
-
-
-        cell1.innerHTML = "<b>วันเวลา</b>";
-        cell2.innerHTML = "<b>รหัสนักเรียน</b>";
-        cell3.innerHTML = "<b>ชื่อ สกุล</b>";
-        cell4.innerHTML = "<b>วิชา</b>";
-        cell5.innerHTML = "<b>สถานะ</b>";
-
-        //นำข้อมูลลงในตาราง ต้องตรงกับspeecheet
-        for (var i = 0; i < json.records.length; i++) {
-          tr = table.insertRow(-1);
-          var tabCell = tr.insertCell(-1);
-          tabCell.innerHTML = json.records[i].วันที่;
-          tabCell = tr.insertCell(-1)
-          tabCell.innerHTML = json.records[i].รหัสนักเรียน;
-          tabCell = tr.insertCell(-1);
-          tabCell.innerHTML = json.records[i].ชื่อ_สกุล;
-          tabCell = tr.insertCell(-1);
-          tabCell.innerHTML = json.records[i].วิชาที่เรียน;
-          tabCell = tr.insertCell(-1);
-          tabCell.innerHTML = json.records[i].สถานะ;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>ระบบเช็ดชื่อรายวิชา</title>
+    <style>
+        table,
+        th,
+        td {
+            margin: 10px 0;
+            border: solid 1px #333;
+            padding: 2px 4px;
+            font: 15px Verdana;
         }
 
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-        document.getElementById("loader").style.visibility = "hidden";
-        $("#re").css("visibility", "visible");
-        $("#datevalue").val("")
-        $("#id").val("")
-        $("#name").val("")
-        $("#subject").val("")
-        $("#status").val("")
-      });
-    }
-  </script>
+        th {
+            font-weight: bold;
+        }
+
+        #loader {
+            border: 16px solid #0B96F7;
+            border-radius: 50%;
+            border-top: 16px solid #FFFF00;
+            border-bottom: 16px solid #FFFF00;
+            width: 40px;
+            height: 40px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+            visibility: hidden;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            margin-top: 30px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .topnav .icon {
+            display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav a:not(:first-child) {
+                display: none;
+            }
+
+            .topnav a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav.responsive {
+                position: relative;
+            }
+
+            .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script>
+
+        var script_url = "https://script.google.com/macros/s/AKfycbwshQKtKwdKxXeF0NybEcqqLyuXaHHa7qTddHFcNTRm2188E2lEoNR9SA/exec";
+
+        //เพิ่มข้อมูล
+        function insert_value() {
+
+            $("#re").css("visibility", "hidden");
+            document.getElementById("loader").style.visibility = "visible";
+            $('#mySpinner').addClass('spinner');
+
+            var datevalue = $("#datevalue").val();
+            var id1 = $("#id").val();
+            var name = $("#name").val();
+            var subject = $("#subject").val();
+            var status = $("#status").val();
+            var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+
+            var request = jQuery.ajax({
+                crossDomain: true,
+                url: url,
+                method: "GET",
+                dataType: "jsonp"
+            });
+        }
+        //อัปเดทข้อมูล
+        function update_value() {
+            $("#re").css("visibility", "hidden");
+            document.getElementById("loader").style.visibility = "visible";
+
+            var datevalue = $("#datevalue").val();
+            var id1 = $("#id").val();
+            var name = $("#name").val();
+            var subject = $("#subject").val();
+            var status = $("#status").val();
+            var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+            var request = jQuery.ajax({
+                crossDomain: true,
+                url: url,
+                method: "GET",
+                dataType: "jsonp"
+            });
+        }
+
+        //ลบข้อมูล
+        function delete_value() {
+            $("#re").css("visibility", "hidden");
+            document.getElementById("loader").style.visibility = "visible";
+
+            $('#mySpinner').addClass('spinner');
+
+            var datevalue = $("#datevalue").val();
+            var id1 = $("#id").val();
+            var name = $("#name").val();
+            var subject = $("#subject").val();
+            var status = $("#status").val();
+            var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+            var request = jQuery.ajax({
+                crossDomain: true,
+                url: url,
+                method: "GET",
+                dataType: "jsonp"
+            });
+        }
+
+        // print the returned data
+        function ctrlq(e) {
+            $("#re").html(e.result);
+            $("#re").css("visibility", "visible");
+            read_value();
+        }
+
+        function read_value() {
+
+            $("#re").css("visibility", "hidden");
+            document.getElementById("loader").style.visibility = "visible";
+            var url = script_url + "?action=read";
+
+            $.getJSON(url, function (json) {
+                // สร้างตารางแสดงข้อมูล
+                var table = document.createElement("table");
+                var header = table.createTHead();
+                var row = header.insertRow(0);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
+                row.style.background = "rgb(243,219,113)";
+
+
+                cell1.innerHTML = "<b>วันเวลา</b>";
+                cell2.innerHTML = "<b>รหัสนักเรียน</b>";
+                cell3.innerHTML = "<b>ชื่อ สกุล</b>";
+                cell4.innerHTML = "<b>วิชา</b>";
+                cell5.innerHTML = "<b>สถานะ</b>";
+
+                //นำข้อมูลลงในตาราง ต้องตรงกับspeecheet
+                for (var i = 0; i < json.records.length; i++) {
+                    tr = table.insertRow(-1);
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = json.records[i].วันที่;
+                    tabCell = tr.insertCell(-1)
+                    tabCell.innerHTML = json.records[i].รหัสนักเรียน;
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = json.records[i].ชื่อ_สกุล;
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = json.records[i].วิชาที่เรียน;
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = json.records[i].สถานะ;
+                }
+
+                var divContainer = document.getElementById("showData");
+                divContainer.innerHTML = "";
+                divContainer.appendChild(table);
+                document.getElementById("loader").style.visibility = "hidden";
+                $("#re").css("visibility", "visible");
+                $("#datevalue").val("")
+                $("#id").val("")
+                $("#name").val("")
+                $("#subject").val("")
+                $("#status").val("")
+            });
+        }
+    </script>
 
 
 </head>
 
 <body class="grey lighten-3"">
-   <!-- NAVBAR -->
-   <nav class=" z-depth-0 grey lighten-4">
-  <div class="nav-wrapper container">
+    <!-- Top Navbar-->
+    <div class=" topnav" id="myTopnav">
     <a href="#" class="brand-logo">
-      <img src="images/KBLogo.ico" style="width: 25px; margin-top: 10px;">
+        <img src="images/KBLogo.ico" style="width: 25px; ">
     </a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li class="logged-in">
-        <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
-      </li>
-      <li class="logged-in">
-        <a href="#" class="grey-text" id="logout">Logout</a>
-      </li>
-      <li class="logged-in">
-        <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
-      </li>
-      <li class="logged-out">
-        <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
-      </li>
-      <li class="logged-out">
-        <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
-      </li>
-      </span>
-    </ul>
-  </div>
-  </nav><!-- SIGN UP MODAL -->
-  <div id="modal-signup" class="modal">
-    <div class="modal-content">
-      <h4>Sign up</h4><br />
-      <form id="signup-form">
-        <div class="input-field">
-          <input type="email" id="signup-email" required />
-          <label for="signup-email">Email address</label>
-        </div>
-        <div class="input-field">
-          <input type="password" id="signup-password" required />
-          <label for="signup-password">Choose password</label>
-        </div>
-        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
-      </form>
+    <a href="#home" class=" grey-text modal-trigger" data-target="modal-account">Account</a>
+    <a href="#news" class="grey-text">Logout</a>
+    <a href="#contact"class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
+    <a href="#about"class="grey-text modal-trigger" data-target="modal-login">Login</a>
+    <a href="#about"class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
     </div>
-  </div>
 
-  <!-- LOGIN MODAL -->
-  <div id="modal-login" class="modal">
-    <div class="modal-content">
-      <h4>Login</h4><br />
-      <form id="login-form">
-        <div class="input-field">
-          <input type="email" id="login-email" required />
-          <label for="login-email">Email address</label>
-        </div>
-        <div class="input-field">
-          <input type="password" id="login-password" required />
-          <label for="login-password">Your password</label>
-        </div>
-        <button class="btn yellow darken-2 z-depth-0">Login</button>
-      </form>
+    <div style="padding-left:16px">
+       
     </div>
-  </div>
 
-  <!-- ACCOUNT MODAL -->
-  <div id="modal-account" class="modal">
-    <div class="modal-content center-align">
-      <h4>Account details</h4><br />
-      <div class="account-details"></div>
-    </div>
-  </div>
-
-  <!-- CREATE GUIDE MODAL -->
-  <div id="modal-create" class="modal">
-    <div class="modal-content">
-      <h4>Create Guide</h4><br />
-      <form id="create-form">
-        <div class="input-field">
-          <input type="text" id="title" required>
-          <label for="title">Guide Title</label>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Sign up</h4><br />
+            <form id="signup-form">
+                <div class="input-field">
+                    <input type="email" id="signup-email" required />
+                    <label for="signup-email">Email address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="signup-password" required />
+                    <label for="signup-password">Choose password</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+            </form>
         </div>
-        <div class="input-field">
-          <textarea id="content" class="materialize-textarea" required></textarea>
-          <label for="content">Guide Content</label>
-        </div>
-        <button class="btn yellow darken-2 z-depth-0">Create</button>
-      </form>
     </div>
-  </div>
 
-  <!-- GUIDE LIST -->
-  <div class="container" style="margin-top: 40px;">
-    <ul class="collapsible z-depth-0 guides" style="border: none;">
-      <li>
-        <div class="collapsible-header grey lighten-4">Guide title</div>
-        <div class="collapsible-body white">Lorem ipsum dolor sit amet.</div>
-      </li>
-      <li>
-        <div class="collapsible-header grey lighten-4">Guide title</div>
-        <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
-      <li>
-        <div class="collapsible-header grey lighten-4">Guide title</div>
-        <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
-      <li>
-        <div class="collapsible-header grey lighten-4">Guide title</div>
-        <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
-    </ul>
-  </div>
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4><br />
+            <form id="login-form">
+                <div class="input-field">
+                    <input type="email" id="login-email" required />
+                    <label for="login-email">Email address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="login-password" required />
+                    <label for="login-password">Your password</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Login</button>
+            </form>
+        </div>
+    </div>
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="scripts/auth.js"></script>
-  <script src="scripts/index.js"></script>
-  <!-- Input and table-->
-  <div align="center">
-    <img src="https://drive.google.com/uc?id=1TtuhtJaW8OOf8sJby3WgPcnbCZcE_Q_I" width="50%">
-    <!--<iframe src="https://drive.google.com/file/d/1nka5m1NxUeDuD0KERFp-R_xhTYwNLTZc/preview" width="640" height="480"></iframe>  -->
-    <h1>พัฒนาโดย นายจิรพงษ์ เจริญสงฆ์</h1>
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+            <h4>Account details</h4><br />
+            <div class="account-details"></div>
+        </div>
+    </div>
 
-    <!-- สร้างฟอร์ม -->
-    <form>
-      วันเวลาที่เข้าเรียน
-      <input type="text" name="datevalue" id="datevalue">
-      รหัสนักเรียน
-      <input type="text" name="id" id="id">
-      ชื่อ สกุล
-      <input type="text" name="name" id="name">
-      วิชา
-      <input type="text" name="subject" id="subject">
-      สถานะ
-      <input type="text" name="status" id="status">
-    </form>
+    <!-- CREATE GUIDE MODAL -->
+    <div id="modal-create" class="modal">
+        <div class="modal-content">
+            <h4>Create Guide</h4><br />
+            <form id="create-form">
+                <div class="input-field">
+                    <input type="text" id="title" required>
+                    <label for="title">Guide Title</label>
+                </div>
+                <div class="input-field">
+                    <textarea id="content" class="materialize-textarea" required></textarea>
+                    <label for="content">Guide Content</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Create</button>
+            </form>
+        </div>
+    </div>
 
-    <!-- เรียกตัว loder มาแสดง-->
-    <div id="loader"></div>
-    <p id="re"></p>
+    <!-- GUIDE LIST -->
+    <div class="container" style="margin-top: 40px;">
+        <ul class="collapsible z-depth-0 guides" style="border: none;">
+            <li>
+                <div class="collapsible-header grey lighten-4">Guide title</div>
+                <div class="collapsible-body white">Lorem ipsum dolor sit amet.</div>
+            </li>
+            <li>
+                <div class="collapsible-header grey lighten-4">Guide title</div>
+                <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header grey lighten-4">Guide title</div>
+                <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header grey lighten-4">Guide title</div>
+                <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+        </ul>
+    </div>
 
-    <input type="button"
-      style="font-size:12pt;color:white;background-color:#F76326;border:1px solid #000000;padding:2px" id="b1"
-      onClick="insert_value()" value="เพิ่มข้อมูล"></input>
-    <input type="button"
-      style="font-size:12pt;color:white;background-color:#6DA551;border:1px solid #000000;padding:2px"
-      onclick="read_value()" value="แสดงข้อมูล" />
-    <input type="button"
-      style="font-size:12pt;color:white;background-color:#0298F7;border:1px solid #000000;padding:2px"
-      onclick="update_value()" value="อัปเดทข้อมูล" />
-    <input type="button"
-      style="font-size:12pt;color:white;background-color:#975AE0;border:1px solid #000000;padding:2px"
-      onclick="delete_value()" value="ลบข้อมูล" />
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/index.js"></script>
+    <!-- Input and table-->
+    <div align="center">
+        <img src="https://drive.google.com/uc?id=1TtuhtJaW8OOf8sJby3WgPcnbCZcE_Q_I" width="50%">
+        <!--<iframe src="https://drive.google.com/file/d/1nka5m1NxUeDuD0KERFp-R_xhTYwNLTZc/preview" width="640" height="480"></iframe>  -->
+        <p>พัฒนาโดย นายจิรพงษ์ เจริญสงฆ์</p>
 
-    <br><br>
-    <a href="https://docs.google.com/spreadsheets/d/1_w0Z9-O2yNW8jO-uEu2DReJOh921A6Z-2UEyjOGG5vg/edit?usp=sharing"
-      target="_blank">ดูข้อมูลในชีต</a>
-    <div id="showData"></div>
-  </div>
+        <!-- สร้างฟอร์ม -->
+        <form>
+            วันเวลาที่เข้าเรียน
+            <input type="text" name="datevalue" id="datevalue">
+            รหัสนักเรียน
+            <input type="text" name="id" id="id">
+            ชื่อ สกุล
+            <input type="text" name="name" id="name">
+            วิชา
+            <input type="text" name="subject" id="subject">
+            สถานะ
+            <input type="text" name="status" id="status">
+        </form>
+
+        <!-- เรียกตัว loder มาแสดง-->
+        <div id="loader"></div>
+        <p id="re"></p>
+
+        <input type="button"
+            style="font-size:12pt;color:white;background-color:#F76326;border:1px solid #000000;padding:2px" id="b1"
+            onClick="insert_value()" value="เพิ่มข้อมูล"></input>
+        <input type="button"
+            style="font-size:12pt;color:white;background-color:#6DA551;border:1px solid #000000;padding:2px"
+            onclick="read_value()" value="แสดงข้อมูล" />
+        <input type="button"
+            style="font-size:12pt;color:white;background-color:#0298F7;border:1px solid #000000;padding:2px"
+            onclick="update_value()" value="อัปเดทข้อมูล" />
+        <input type="button"
+            style="font-size:12pt;color:white;background-color:#975AE0;border:1px solid #000000;padding:2px"
+            onclick="delete_value()" value="ลบข้อมูล" />
+
+        <br><br>
+        <a href="https://docs.google.com/spreadsheets/d/1_w0Z9-O2yNW8jO-uEu2DReJOh921A6Z-2UEyjOGG5vg/edit?usp=sharing"
+            target="_blank">ดูข้อมูลในชีต</a>
+        <div id="showData"></div>
+    </div>
 </body>
 
-<html>
+</html>
