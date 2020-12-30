@@ -19,7 +19,6 @@ const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
 
- $(document).ready(function(){
 
 var script_url = "https://script.google.com/macros/s/AKfycbwshQKtKwdKxXeF0NybEcqqLyuXaHHa7qTddHFcNTRm2188E2lEoNR9SA/exec";
 
@@ -153,4 +152,4 @@ function read_value() {
     $("#status").val("")
   });
   }
- });
+ 
