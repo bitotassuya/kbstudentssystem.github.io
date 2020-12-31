@@ -26,8 +26,8 @@ $(document).ready(function () {
     e.preventDefault();
     auth.signOut().then(() => {
       console.log('user signed out');
-      document.location.href="index.html";
-      
+      document.location.href = "index.html";
+
     })
   });
 
@@ -43,7 +43,7 @@ $(document).ready(function () {
     // log the user in
     auth.signInWithEmailAndPassword(email, password).then((cred) => {
       console.log(cred.user);
-      document.location.href="homepage.html";
+      document.location.href = "homepage.html";
       // close the signup modal & reset form
       const modal = document.querySelector('#modal-login');
       M.Modal.getInstance(modal).close();
