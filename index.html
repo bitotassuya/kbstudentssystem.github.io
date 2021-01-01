@@ -143,7 +143,7 @@
     <img src="images/KBLogo.ico" style="width: 25px; ">
   </a>
   <a href="#" class=" grey-text modal-trigger" data-target="modal-account">Account</a>
-  <a href="#" class="grey-text" id = "logout">Logout</a> 
+  <a href="#" class="grey-text" id="logout">Logout</a>
   <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
   <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
   <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
@@ -244,9 +244,20 @@
   <div align="center">
     <img src="https://drive.google.com/uc?id=1TtuhtJaW8OOf8sJby3WgPcnbCZcE_Q_I" width="100%">
     <!--<iframe src="https://drive.google.com/file/d/1nka5m1NxUeDuD0KERFp-R_xhTYwNLTZc/preview" width="640" height="480"></iframe>  -->
-    <p>พัฒนาโดย นายจิรพงษ์ เจริญสงฆ์</p>
-
+    <p>พัฒนาโดย นายจิรพงษ์ เจริญสงฆ์</p><br> <br>
+    <h4>ระบบสืบค้นเวลาเข้าเรียนแต่ละวิชา</h4>
+    <p>ค้นหาด้วยรหัสนักเรียน</p>
+    <input type="text" name="srchID" id="srchID"> &nbsp; <input type="button"
+      style="font-size:12pt;color:white;background-color:red;border:1px solid #000000;padding:2px"
+      onclick="read_value($('#srchID').val())" value="ค้นหาข้อมูล" />
+    <br> <br>
+    <p>ค้นหาด้วยชื่อนักเรียน</p>
+    <input type="text" name="srchName" id="srchName"> &nbsp; <input type="button"
+      style="font-size:12pt;color:white;background-color:red;border:1px solid #000000;padding:2px"
+      onclick="read_valueName($('#srchName').val())" value="ค้นหาข้อมูล" />
+    <br> <br>
     <!-- สร้างฟอร์ม -->
+    <!--
     <form>
       วันเวลาที่เข้าเรียน
       <input type="text" name="datevalue" id="datevalue">
@@ -259,11 +270,13 @@
       สถานะ
       <input type="text" name="status" id="status">
     </form>
+  -->
 
     <!-- เรียกตัว loder มาแสดง-->
     <div id="loader"></div>
     <p id="re"></p>
-
+    <!-- ปุ่มกดเพิ่ม ลบ ข้อมูล -->
+    <!--
     <input type="button"
       style="font-size:12pt;color:white;background-color:#F76326;border:1px solid #000000;padding:2px" id="b1"
       onClick="insert_value()" value="เพิ่มข้อมูล"></input>
@@ -276,6 +289,7 @@
     <input type="button"
       style="font-size:12pt;color:white;background-color:#975AE0;border:1px solid #000000;padding:2px"
       onclick="delete_value()" value="ลบข้อมูล" />
+  -->
 
     <br><br>
     <a href="https://docs.google.com/spreadsheets/d/1_w0Z9-O2yNW8jO-uEu2DReJOh921A6Z-2UEyjOGG5vg/edit?usp=sharing"
