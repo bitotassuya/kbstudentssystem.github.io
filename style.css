@@ -100,4 +100,13 @@ th {
     display: block;
     text-align: left;
   }
+ 
+}
+h3 {
+  margin-top: 50px;
+  font-family: Georgia, serif;
+  font-size: 40px;
+  margin-left: 150pxs; 
+  margin-right: 150pxs;
+  color: #f2f2f2;
 }
