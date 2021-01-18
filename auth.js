@@ -1,5 +1,17 @@
-
 $(document).ready(function () {
+
+  db.collection('guides').get().then(snapshot => {
+    setupGuides(snapshot.docs);
+  });
+  
+// listen for auth status changes
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      console.log('user logged in: ', user);
+    } else {
+      console.log('user logged out');
+    }
+  })
   // signup
   const signupForm = document.querySelector('#signup-form');
   signupForm.addEventListener('submit', (e) => {
@@ -25,7 +37,7 @@ $(document).ready(function () {
   logout.addEventListener('click', (e) => {
     e.preventDefault();
     auth.signOut().then(() => {
-      console.log('user signed out');
+      //console.log('user signed out');
       document.location.href = "index.html";
 
     })
@@ -42,7 +54,7 @@ $(document).ready(function () {
 
     // log the user in
     auth.signInWithEmailAndPassword(email, password).then((cred) => {
-      console.log(cred.user);
+      //console.log(cred.user);
       document.location.href = "homepage.html";
       // close the signup modal & reset form
       const modal = document.querySelector('#modal-login');
