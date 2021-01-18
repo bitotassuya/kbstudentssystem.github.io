@@ -114,10 +114,10 @@ function read_value(srch) {
 
     var row = header.insertRow(0);
     var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(2);
-    var cell3 = row.insertCell(3);
-    var cell4 = row.insertCell(4);
-    var cell5 = row.insertCell(5);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
     row.style.background = "rgb(243,219,113)";
 
 
@@ -192,10 +192,10 @@ function read_valueName(srchName) {
 
     var row = header.insertRow(0);
     var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(2);
-    var cell3 = row.insertCell(3);
-    var cell4 = row.insertCell(4);
-    var cell5 = row.insertCell(5);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
     row.style.background = "rgb(243,219,113)";
 
 
@@ -268,10 +268,10 @@ function read_value2() {
     var header = table.createTHead();
     var row = header.insertRow(0);
     var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(2);
-    var cell3 = row.insertCell(3);
-    var cell4 = row.insertCell(4);
-    var cell5 = row.insertCell(5);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
     row.style.background = "rgb(243,219,113)";
 
 
@@ -326,10 +326,10 @@ function getData2Input() {
 function tableText(tableRow) {
 
   var datevalue = tableRow.childNodes[0].innerHTML;
-  var id = tableRow.childNodes[2].innerHTML;
-  var name = tableRow.childNodes[3].innerHTML;
-  var subject = tableRow.childNodes[4].innerHTML;
-  var status = tableRow.childNodes[5].innerHTML;
+  var id = tableRow.childNodes[1].innerHTML;
+  var name = tableRow.childNodes[2].innerHTML;
+  var subject = tableRow.childNodes[3].innerHTML;
+  var status = tableRow.childNodes[4].innerHTML;
   $("#datevalue").val("")
   $("#id").val("")
   $("#name").val("")
