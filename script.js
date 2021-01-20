@@ -43,8 +43,10 @@ function insert_value() {
   var id1 = $("#id").val();
   var name = $("#name").val();
   var subject = $("#subject").val();
+  var level = $("#level").val();
+  var number = $("#number").val();
   var status = $("#status").val();
-  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&number" + number + "&level" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
 
   var request = jQuery.ajax({
     crossDomain: true,
@@ -62,8 +64,10 @@ function update_value() {
   var id1 = $("#id").val();
   var name = $("#name").val();
   var subject = $("#subject").val();
+  var level = $("#level").val();
+  var number = $("#number").val();
   var status = $("#status").val();
-  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&number" + number + "&level" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
   var request = jQuery.ajax({
     crossDomain: true,
     url: url,
@@ -83,8 +87,10 @@ function delete_value() {
   var id1 = $("#id").val();
   var name = $("#name").val();
   var subject = $("#subject").val();
+  var level = $("#level").val();
+  var number = $("#number").val();
   var status = $("#status").val();
-  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&number" + number + "&level" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
   var request = jQuery.ajax({
     crossDomain: true,
     url: url,
@@ -118,6 +124,8 @@ function read_value(srch) {
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
     row.style.background = "rgb(243,219,113)";
 
 
@@ -125,7 +133,9 @@ function read_value(srch) {
     cell2.innerHTML = "<b>รหัสนักเรียน</b>";
     cell3.innerHTML = "<b>ชื่อ สกุล</b>";
     cell4.innerHTML = "<b>วิชา</b>";
-    cell5.innerHTML = "<b>สถานะ</b>";
+    cell5.innerHTML = "<b>ชั้น</b>";
+    cell6.innerHTML = "<b>เลขที่</b>";
+    cell7.innerHTML = "<b>สถานะ</b>";
 
     //นำข้อมูลลงในตาราง ต้องตรงกับspeecheet
     if (srch != '') {
@@ -141,6 +151,10 @@ function read_value(srch) {
           tabCell.innerHTML = json.records[i].ชื่อ_สกุล;
           tabCell = tr.insertCell(-1);
           tabCell.innerHTML = json.records[i].วิชาที่เรียน;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].ชั้น;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].เลขที่;
           tabCell = tr.insertCell(-1);
           tabCell.innerHTML = json.records[i].สถานะ;
         }
@@ -160,6 +174,10 @@ function read_value(srch) {
         tabCell = tr.insertCell(-1);
         tabCell.innerHTML = json.records[i].วิชาที่เรียน;
         tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].ชั้น;
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].เลขที่;
+        tabCell = tr.insertCell(-1);
         tabCell.innerHTML = json.records[i].สถานะ;
       }
     }
@@ -173,8 +191,10 @@ function read_value(srch) {
     $("#id").val("")
     $("#name").val("")
     $("#subject").val("")
+    $("#level").val("")
+    $("#number").val("")
     $("#status").val("")
-   
+
   });
 }
 //Search Name Button
@@ -196,6 +216,8 @@ function read_valueName(srchName) {
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
     row.style.background = "rgb(243,219,113)";
 
 
@@ -203,7 +225,9 @@ function read_valueName(srchName) {
     cell2.innerHTML = "<b>รหัสนักเรียน</b>";
     cell3.innerHTML = "<b>ชื่อ สกุล</b>";
     cell4.innerHTML = "<b>วิชา</b>";
-    cell5.innerHTML = "<b>สถานะ</b>";
+    cell5.innerHTML = "<b>ชั้น</b>";
+    cell6.innerHTML = "<b>เลขที่</b>";
+    cell7.innerHTML = "<b>สถานะ</b>";
 
     //นำข้อมูลลงในตาราง ต้องตรงกับspeecheet
     if (srchName != '') {
@@ -219,6 +243,10 @@ function read_valueName(srchName) {
           tabCell.innerHTML = json.records[i].ชื่อ_สกุล;
           tabCell = tr.insertCell(-1);
           tabCell.innerHTML = json.records[i].วิชาที่เรียน;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].ชั้น;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].เลขที่;
           tabCell = tr.insertCell(-1);
           tabCell.innerHTML = json.records[i].สถานะ;
         }
@@ -238,6 +266,10 @@ function read_valueName(srchName) {
         tabCell = tr.insertCell(-1);
         tabCell.innerHTML = json.records[i].วิชาที่เรียน;
         tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].ชั้น;
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].เลขที่;
+        tabCell = tr.insertCell(-1);
         tabCell.innerHTML = json.records[i].สถานะ;
       }
     }
@@ -251,8 +283,10 @@ function read_valueName(srchName) {
     $("#id").val("")
     $("#name").val("")
     $("#subject").val("")
+    $("#level").val("")
+    $("#number").val("")
     $("#status").val("")
-   
+
   });
 }
 ////For Show Table Button
@@ -272,6 +306,8 @@ function read_value2() {
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
     row.style.background = "rgb(243,219,113)";
 
 
@@ -279,7 +315,9 @@ function read_value2() {
     cell2.innerHTML = "<b>รหัสนักเรียน</b>";
     cell3.innerHTML = "<b>ชื่อ สกุล</b>";
     cell4.innerHTML = "<b>วิชา</b>";
-    cell5.innerHTML = "<b>สถานะ</b>";
+    cell5.innerHTML = "<b>ชั้น</b>";
+    cell6.innerHTML = "<b>เลขที่</b>";
+    cell7.innerHTML = "<b>สถานะ</b>";
 
     //นำข้อมูลลงในตาราง ต้องตรงกับspeecheet
     for (var i = 0; i < json.records.length; i++) {
@@ -293,6 +331,10 @@ function read_value2() {
       tabCell = tr.insertCell(-1);
       tabCell.innerHTML = json.records[i].วิชาที่เรียน;
       tabCell = tr.insertCell(-1);
+      tabCell.innerHTML = json.records[i].ชั้น;
+      tabCell = tr.insertCell(-1);
+      tabCell.innerHTML = json.records[i].เลขที่;
+      tabCell = tr.insertCell(-1);
       tabCell.innerHTML = json.records[i].สถานะ;
     }
 
@@ -305,10 +347,12 @@ function read_value2() {
     $("#id").val("")
     $("#name").val("")
     $("#subject").val("")
+    $("#level").val("")
+    $("#number").val("")
     $("#status").val("")
     getData2Input();
   });
-  }
+}
 ////////////เมื่อมีการคลิกข้อมูลในตาราง
 function getData2Input() {
   var table = document.getElementById("myTable");
@@ -329,11 +373,15 @@ function tableText(tableRow) {
   var id = tableRow.childNodes[1].innerHTML;
   var name = tableRow.childNodes[2].innerHTML;
   var subject = tableRow.childNodes[3].innerHTML;
-  var status = tableRow.childNodes[4].innerHTML;
+  var level = tableRow.childNodes[4].innerHTML;
+  var number = tableRow.childNodes[5].innerHTML;
+  var status = tableRow.childNodes[6].innerHTML;
   $("#datevalue").val("")
   $("#id").val("")
   $("#name").val("")
   $("#subject").val("")
+  $("#level").val("")
+  $("#number").val("")
   $("#status").val("")
 
 }
