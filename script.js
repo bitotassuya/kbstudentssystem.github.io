@@ -195,7 +195,7 @@ function read_value(srch) {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
-    
+    getData2Input();
 
   });
 
@@ -210,7 +210,7 @@ function read_valueName(srchName) {
   $.getJSON(url, function (json) {
     // สร้างตารางแสดงข้อมูล
     var table = document.createElement("table");
-    table.setAttribute("name", "myTable");
+    table.setAttribute("id", "myTable3");
     var header = table.createTHead();
 
     var row = header.insertRow(0);
@@ -290,6 +290,7 @@ function read_valueName(srchName) {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
+    getData2Input();
 
   });
 }
@@ -301,6 +302,7 @@ function read_value2() {
   var url = script_url + "?action=read";
 
   $.getJSON(url, function (json) {
+    console.log(json);
     // สร้างตารางแสดงข้อมูล
     var table = document.createElement("table");
     var header = table.createTHead();
@@ -368,7 +370,7 @@ function read_valueLevel(srchLevel) {
   $.getJSON(url, function (json) {
     // สร้างตารางแสดงข้อมูล
     var table = document.createElement("table");
-    table.setAttribute("level", "myTable");
+    table.setAttribute("id", "myTable1");
     var header = table.createTHead();
 
     var row = header.insertRow(0);
@@ -512,6 +514,7 @@ function read_value2() {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
+    getData2Input();
 
   });
 }
@@ -520,10 +523,12 @@ function read_value2() {
 ////////////เมื่อมีการคลิกข้อมูลในตาราง
 function getData2Input() {
   var table = document.getElementById("myTable");
+  console.log(table);
 
   if (table) {
     for (var i = 0; i < table.rows.length; i++) {
       table.rows[i].onclick = function () {
+        console.log("Click");
         tableText(this);
       }
     }
@@ -540,13 +545,15 @@ function tableText(tableRow) {
   var level = tableRow.childNodes[4].innerHTML;
   var number = tableRow.childNodes[5].innerHTML;
   var status = tableRow.childNodes[6].innerHTML;
-  $("#datevalue").val("")
-  $("#id").val("")
-  $("#name").val("")
-  $("#subject").val("")
-  $("#level").val("")
-  $("#number").val("")
-  $("#status").val("")
+
+  $("#datevalue").val(datevalue)
+  $("#id").val(id)
+  $("#name").val(name)
+  $("#subject").val(subject)
+  $("#level").val(level)
+  $("#number").val(number)
+  $("#status").val(status)
+  console.log(status);
 
 }
 
