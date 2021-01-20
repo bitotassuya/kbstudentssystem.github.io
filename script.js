@@ -47,7 +47,7 @@ function insert_value() {
   var number = $("#number").val();
   var status = $("#status").val();
   var url = script_url + "?callback=ctrlq&status=" + status + "&number=" + number + "&level=" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 +"&datevalue=" + datevalue +"&action=insert";
-
+ 
   var request = jQuery.ajax({
     crossDomain: true,
     url: url,
@@ -108,7 +108,6 @@ function ctrlq(e) {
 }
 //Search ID Button
 function read_value(srch) {
-
   $("#re").css("visibility", "hidden");
   document.getElementById("loader").style.visibility = "visible";
   var url = script_url + "?action=read";
@@ -161,6 +160,7 @@ function read_value(srch) {
         }
       }
       $("#re").html("พบข้อมูล");
+      $("#srchID").val("")
       $("#re").css("visibility", "visible");
     } else {
       for (var i = 0; i < json.records.length; i++) {
@@ -195,8 +195,10 @@ function read_value(srch) {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
+    
 
   });
+
 }
 //Search Name Button
 function read_valueName(srchName) {
@@ -253,6 +255,7 @@ function read_valueName(srchName) {
         }
       }
       $("#re").html("พบข้อมูล");
+      $("#srchName").val("")
       $("#re").css("visibility", "visible");
     } else {
       for (var i = 0; i < json.records.length; i++) {
@@ -388,10 +391,10 @@ function read_valueLevel(srchLevel) {
     cell7.innerHTML = "<b>สถานะ</b>";
 
     //นำข้อมูลลงในตาราง ต้องตรงกับspeecheet
-    if (srchName != '') {
+    if (srchLevel != '') {
       for (var i = 0; i < json.records.length; i++) {
 
-        if (srchName == json.records[i].ชั้น) {
+        if (srchLevel == json.records[i].ชั้น) {
           tr = table.insertRow(-1);
           var tabCell = tr.insertCell(-1);
           tabCell.innerHTML = json.records[i].วันที่;
@@ -410,6 +413,7 @@ function read_valueLevel(srchLevel) {
         }
       }
       $("#re").html("พบข้อมูล");
+      $("#srchLevel").val("")
       $("#re").css("visibility", "visible");
     } else {
       for (var i = 0; i < json.records.length; i++) {
