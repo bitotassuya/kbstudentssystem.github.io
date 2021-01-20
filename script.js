@@ -46,7 +46,7 @@ function insert_value() {
   var level = $("#level").val();
   var number = $("#number").val();
   var status = $("#status").val();
-  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&number" + number + "&level" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+  var url = script_url + "?callback=ctrlq&status=" + status + "&number=" + number + "&level=" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 +"&datevalue=" + datevalue +"&action=insert";
 
   var request = jQuery.ajax({
     crossDomain: true,
@@ -59,21 +59,22 @@ function insert_value() {
 function update_value() {
   $("#re").css("visibility", "hidden");
   document.getElementById("loader").style.visibility = "visible";
-
-  var datevalue = $("#datevalue").val();
-  var id1 = $("#id").val();
-  //var name = $("#name").val();
-  var subject = $("#subject").val();
-  var level = $("#level").val();
-  var number = $("#number").val();
-  var status = $("#status").val();
-  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&number" + number + "&level" + level + "&subject=" + subject + "&id=" + id1 + "&action=insert";
-  var request = jQuery.ajax({
-    crossDomain: true,
-    url: url,
-    method: "GET",
-    dataType: "jsonp"
-  });
+  if (id1 = id1) {
+    var datevalue = $("#datevalue").val();
+    var id1 = $("#id").val();
+    var name = $("#name").val();
+    var subject = $("#subject").val();
+    var level = $("#level").val();
+    var number = $("#number").val();
+    var status = $("#status").val();
+    var url = script_url + "?callback=ctrlq&status=" + status + "&number=" + number + "&level=" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 +"&datevalue=" + datevalue +"&action=update";
+    var request = jQuery.ajax({
+      crossDomain: true,
+      url: url,
+      method: "GET",
+      dataType: "jsonp"
+    });
+  }
 }
 
 //ลบข้อมูล
@@ -90,7 +91,7 @@ function delete_value() {
   var level = $("#level").val();
   var number = $("#number").val();
   var status = $("#status").val();
-  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&number" + number + "&level" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+  var url = script_url + "?callback=ctrlq&status=" + status + "&number=" + number + "&level=" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 +"&datevalue=" + datevalue +"&action=delete";
   var request = jQuery.ajax({
     crossDomain: true,
     url: url,
@@ -507,7 +508,7 @@ function read_value2() {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
-    
+
   });
 }
 ////สิ้นสุดปุ่มค้นหาชั้น
