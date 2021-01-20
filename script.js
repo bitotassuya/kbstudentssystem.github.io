@@ -195,7 +195,9 @@ function read_value(srch) {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
+    
     getData2Input();
+
 
   });
 
@@ -291,6 +293,7 @@ function read_valueName(srchName) {
     $("#number").val("")
     $("#status").val("")
     getData2Input();
+    
 
   });
 }
@@ -356,7 +359,7 @@ function read_value2() {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
-    getData2Input();
+    
   });
 }
 /////ปุ่มค้นหาชั้น
@@ -514,12 +517,107 @@ function read_value2() {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
-    getData2Input();
+   
 
   });
 }
 ////สิ้นสุดปุ่มค้นหาชั้น
+//// ค้นหาหน้า Home
+//Search ID Button
+function read_valueHome(srchHome) {
+  $("#re").css("visibility", "hidden");
+  document.getElementById("loader").style.visibility = "visible";
+  var url = script_url + "?action=read";
 
+  $.getJSON(url, function (json) {
+    // สร้างตารางแสดงข้อมูล
+    var table = document.createElement("table");
+    table.setAttribute("id", "myTable");
+    var header = table.createTHead();
+
+    var row = header.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+    row.style.background = "rgb(243,219,113)";
+
+
+    cell1.innerHTML = "<b>วันเวลา</b>";
+    cell2.innerHTML = "<b>รหัสนักเรียน</b>";
+    cell3.innerHTML = "<b>ชื่อ สกุล</b>";
+    cell4.innerHTML = "<b>วิชา</b>";
+    cell5.innerHTML = "<b>ชั้น</b>";
+    cell6.innerHTML = "<b>เลขที่</b>";
+    cell7.innerHTML = "<b>สถานะ</b>";
+
+    //นำข้อมูลลงในตาราง ต้องตรงกับspeecheet
+    if (srchHome != '') {
+      for (var i = 0; i < json.records.length; i++) {
+
+        if (srchHome == json.records[i].รหัสนักเรียน) {
+          tr = table.insertRow(-1);
+          var tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].วันที่;
+          tabCell = tr.insertCell(-1)
+          tabCell.innerHTML = json.records[i].รหัสนักเรียน;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].ชื่อ_สกุล;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].วิชาที่เรียน;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].ชั้น;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].เลขที่;
+          tabCell = tr.insertCell(-1);
+          tabCell.innerHTML = json.records[i].สถานะ;
+        }
+      }
+      $("#re").html("พบข้อมูล");
+      $("#srchHome").val("")
+      $("#re").css("visibility", "visible");
+    } else {
+      for (var i = 0; i < json.records.length; i++) {
+
+        tr = table.insertRow(-1);
+        var tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].วันที่;
+        tabCell = tr.insertCell(-1)
+        tabCell.innerHTML = json.records[i].รหัสนักเรียน;
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].ชื่อ_สกุล;
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].วิชาที่เรียน;
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].ชั้น;
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].เลขที่;
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = json.records[i].สถานะ;
+      }
+    }
+
+    var divContainer = document.getElementById("showData");
+    divContainer.innerHTML = "";
+    divContainer.appendChild(table);
+    document.getElementById("loader").style.visibility = "hidden";
+    $("#re").css("visibility", "visible");
+    $("#datevalue").val("")
+    $("#id").val("")
+    $("#name").val("")
+    $("#subject").val("")
+    $("#level").val("")
+    $("#number").val("")
+    $("#status").val("")
+    
+
+
+  });
+}
+////สิ้นสุดค้นหาหน้า Home
 ////////////เมื่อมีการคลิกข้อมูลในตาราง
 function getData2Input() {
   var table = document.getElementById("myTable");
@@ -547,11 +645,17 @@ function tableText(tableRow) {
   var status = tableRow.childNodes[6].innerHTML;
 
   $("#datevalue").val(datevalue)
+  console.log(datevalue);
   $("#id").val(id)
+  console.log(id);
   $("#name").val(name)
+  console.log(name);
   $("#subject").val(subject)
+  console.log(subject);
   $("#level").val(level)
+  console.log(level);
   $("#number").val(number)
+  console.log(number);
   $("#status").val(status)
   console.log(status);
 
