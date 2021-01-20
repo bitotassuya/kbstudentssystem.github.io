@@ -62,12 +62,12 @@ function update_value() {
 
   var datevalue = $("#datevalue").val();
   var id1 = $("#id").val();
-  var name = $("#name").val();
+  //var name = $("#name").val();
   var subject = $("#subject").val();
   var level = $("#level").val();
   var number = $("#number").val();
   var status = $("#status").val();
-  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&number" + number + "&level" + level + "&subject=" + subject + "&name=" + name + "&id=" + id1 + "&action=insert";
+  var url = script_url + "?callback=ctrlq&datevalue=" + datevalue + "&status=" + status + "&number" + number + "&level" + level + "&subject=" + subject +  "&id=" + id1 + "&action=insert";
   var request = jQuery.ajax({
     crossDomain: true,
     url: url,
