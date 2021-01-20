@@ -251,6 +251,11 @@
     <p>พัฒนาโดย นายจิรพงษ์ เจริญสงฆ์</p>
 
     <!-- สร้างฟอร์ม -->
+    <p>ค้นหาด้วยชั้น</p>
+    <input type="text" name="srchLevel" id="srchLevel"> &nbsp; <input type="button"
+      style="font-size:12pt;color:white;background-color:red;border:1px solid #000000;padding:2px"
+      onclick="read_valueLevel($('#srchLevel').val())" value="ค้นหาชั้นเรียน" />
+    <br> <br>
     <form>
       วันเวลาที่เข้าเรียน
       <input type="text" name="datevalue" id="datevalue">
@@ -278,9 +283,9 @@
     <!--<input type="button" id="srchHome"
       style="font-size:12pt;color:white;background-color:#6DA551;border:1px solid #000000;padding:2px"
       onclick="read_valueHome($('#srchHome').val())" value="แสดงข้อมูล" /> -->
-    <input type="text" name="srchName" id="srchName"> &nbsp; <input type="button"
+      <input type="text" name="srchID" id="srchID"> &nbsp; <input type="button"
       style="font-size:12pt;color:white;background-color:red;border:1px solid #000000;padding:2px"
-      onclick="read_valueName($('#srchName').val())" value="แสดงข้อมูล" />
+      onclick="read_value($('#srchID').val())" value="แสดงข้อมูล" />
     <input type="button"
       style="font-size:12pt;color:white;background-color:#0298F7;border:1px solid #000000;padding:2px"
       onclick="update_value()" value="อัปเดทข้อมูล" />

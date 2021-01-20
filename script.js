@@ -292,7 +292,7 @@ function read_valueName(srchName) {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
-    getData2Input();
+   
     
 
   });
@@ -453,6 +453,7 @@ function read_valueLevel(srchLevel) {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
+    getData2Input2();
 
   });
 }
@@ -517,7 +518,8 @@ function read_value2() {
     $("#level").val("")
     $("#number").val("")
     $("#status").val("")
-   
+  
+    getData2Input2();
 
   });
 }
@@ -658,6 +660,51 @@ function tableText(tableRow) {
   console.log(number);
   $("#status").val(status)
   console.log(status);
+
+}
+
+
+//Test
+////////////เมื่อมีการคลิกข้อมูลในตาราง
+function getData2Input2() {
+  var table2 = document.getElementById("myTable1");
+  console.log(table2);
+
+  if (table2) {
+    for (var i = 0; i < table2.rows.length; i++) {
+      table2.rows[i].onclick = function () {
+        console.log("Click");
+        tableText2(this);
+      }
+    }
+  }
+}
+///////////////////ดึงข้อมูลจากชีตมาแสดงในช่องกรอกข้อมูล
+
+function tableText2(tableRow2) {
+
+  var datevalue2 = tableRow2.childNodes[0].innerHTML;
+  var id2 = tableRow2.childNodes[1].innerHTML;
+  var name2 = tableRow2.childNodes[2].innerHTML;
+  var subject2 = tableRow2.childNodes[3].innerHTML;
+  var level2 = tableRow2.childNodes[4].innerHTML;
+  var number2 = tableRow2.childNodes[5].innerHTML;
+  var status2 = tableRow2.childNodes[6].innerHTML;
+
+  $("#datevalue").val(datevalue2)
+  console.log(datevalue2);
+  $("#id").val(id2)
+  console.log(id2);
+  $("#name").val(name2)
+  console.log(name2);
+  $("#subject").val(subject2)
+  console.log(subject2);
+  $("#level").val(level2)
+  console.log(level2);
+  $("#number").val(number2)
+  console.log(number2);
+  $("#status").val(status2)
+  console.log(status2);
 
 }
 
