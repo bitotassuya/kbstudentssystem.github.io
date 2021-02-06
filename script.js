@@ -59,7 +59,7 @@ function insert_value() {
 function update_value() {
   $("#re").css("visibility", "hidden");
   document.getElementById("loader").style.visibility = "visible";
-  if (id1 = id1) {
+
     var datevalue = $("#datevalue").val();
     var id1 = $("#id").val();
     var name = $("#name").val();
@@ -74,7 +74,7 @@ function update_value() {
       method: "GET",
       dataType: "jsonp"
     });
-  }
+  
 }
 
 //ลบข้อมูล
